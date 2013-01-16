@@ -8,7 +8,7 @@
 #include <stdint.h>
 
 #include "platform.h"
-#include "simulated.h"
+//#include "simulated.h"
 
 int8_t I2C_init()
 {
