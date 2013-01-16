@@ -7,9 +7,8 @@
  *  This file holds the API for the platform dependant code
  *
  *      Requirements:
- *              A : Send a message to a slave device
- *              B : Read a register in a slave device
- *              C : Write a register in a slave device (same as A?)
+ *              A : Send a message to a slave device (slave receive mode)
+ *              B : Read a register in a slave device (slave transmit mode)
  *
  *              1 : Bytes are send msb (most significant bit) first
  *
