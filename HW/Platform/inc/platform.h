@@ -11,6 +11,7 @@
  *              B : Read a register in a slave device
  *              C : Write a register in a slave device (same as A?)
  *
+ *              1 : Bytes are send msb (most significant bit) first
  *
  */
 
@@ -19,6 +20,9 @@
 #ifndef PLATFORM_H_
 #define PLATFORM_H_
 
+enum platformErrorCodes { OK, ERROR };
+
 int8_t I2C_init();
+int8_t I2C_send();
 
 #endif /* PLATFORM_H_ */

@@ -5,4 +5,11 @@
  *      Author: flindt
  */
 
+#include "platform.h"
+
+int8_t   sim_I2C_send()
+{
+  return OK;
+}
+
 

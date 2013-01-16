@@ -7,7 +7,18 @@
 
 #include <stdint.h>
 
+#include "platform.h"
+#include "simulated.h"
+
 int8_t I2C_init()
 {
-  return 0;
+  return ERROR;
+}
+
+
+int8_t I2C_send()
+{
+
+  return sim_I2C_send();
+
 }

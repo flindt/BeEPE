@@ -14,7 +14,7 @@
 #include "seatest.h"
 
 
-void test_i2c (void );
+void test_i2c(void );
 
 void all_tests( void )
 {
