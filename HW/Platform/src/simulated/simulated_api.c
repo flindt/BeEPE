@@ -22,3 +22,9 @@ int8_t I2C_send(int8_t slaveAddress, int8_t slaveRegister, int8_t noBytesToSend,
   return sim_I2C_send(slaveAddress, slaveRegister, noBytesToSend, dataBytes);
 
 }
+
+
+int8_t I2C_read( int8_t slaveAddress, int8_t slaveRegister, int8_t noBytesToRead, int8_t *dataBytes)
+{
+  return sim_I2C_read();
+}

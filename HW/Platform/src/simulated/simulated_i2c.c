@@ -25,7 +25,10 @@
 #include "platform.h"
 
 enum AttatchedSlaves { TEMP_A = 0x4F, TEMP_B = 0x4E };
+enum Registers { TLOW = 0x02 };
 
+
+int8_t Tlow[2] = { 0,0 };
 
 
 int8_t   sim_I2C_send(int8_t slaveAddress, int8_t slaveRegister, int8_t noBytesToSend, int8_t *dataBytes)
@@ -34,6 +37,13 @@ int8_t   sim_I2C_send(int8_t slaveAddress, int8_t slaveRegister, int8_t noBytesT
   switch (slaveAddress)
   {
   case TEMP_A:
+    switch (slaveRegister)
+    {
+    case TLOW:
+      Tlow[0] = dataBytes[0];
+      Tlow[1] = dataBytes[1];
+      break;
+    }
     return I2C_OK;
   case TEMP_B:
     return I2C_OK;
@@ -43,4 +53,25 @@ int8_t   sim_I2C_send(int8_t slaveAddress, int8_t slaveRegister, int8_t noBytesT
   }
 }
 
+
+int8_t sim_I2C_read( int8_t slaveAddress, int8_t slaveRegister, int8_t noBytesToRead, int8_t *dataBytes)
+{
+  switch (slaveAddress)
+    {
+    case TEMP_A:
+      switch (slaveRegister)
+      {
+      case TLOW:
+        dataBytes[0] = Tlow[0];
+         dataBytes[1] = Tlow[1];
+        break;
+      }
+      return I2C_OK;
+    case TEMP_B:
+      return I2C_OK;
+    default:
+      // Slave address not recognized
+      return I2C_ERROR;
+    }
+}
 
