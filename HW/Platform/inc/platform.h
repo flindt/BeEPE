@@ -20,7 +20,7 @@
 #ifndef PLATFORM_H_
 #define PLATFORM_H_
 
-enum platformErrorCodes { OK, ERROR };
+enum platformErrorCodes { I2C_OK, I2C_ERROR };
 
 int8_t I2C_init();
 int8_t I2C_send( int8_t slaveAddress, int8_t slaveRegister, int8_t noBytesToSend, int8_t *dataBytes);

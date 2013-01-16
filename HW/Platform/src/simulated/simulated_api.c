@@ -12,7 +12,7 @@
 
 int8_t I2C_init()
 {
-  return ERROR;
+  return I2C_ERROR;
 }
 
 
