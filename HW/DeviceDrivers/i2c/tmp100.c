@@ -11,7 +11,7 @@
 
 #include <stdint.h>
 
-int8_t tmp100_init()
+int8_t* tmp100_init()
 {
   return 0;
 }
