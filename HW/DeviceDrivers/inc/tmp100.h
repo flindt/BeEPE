@@ -8,6 +8,9 @@
 #ifndef TMP100_H_
 #define TMP100_H_
 
-int8_t* tmp100_init();
+struct deviceTMP100_struct;
+typedef struct deviceTMP100_struct *deviceTMP100;
+
+deviceTMP100* tmp100_init();
 
 #endif /* TMP100_H_ */

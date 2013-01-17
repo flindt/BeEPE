@@ -10,8 +10,15 @@
  */
 
 #include <stdint.h>
+#include "../inc/tmp100.h"
 
-int8_t* tmp100_init()
+typedef struct
+{
+  int8_t isInitialised;
+} deviceTMP100_struct;
+
+deviceTMP100*
+tmp100_init()
 {
   return 0;
 }
