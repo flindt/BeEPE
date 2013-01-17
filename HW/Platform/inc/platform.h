@@ -13,6 +13,8 @@
  *                      slave address | R | internal slave register | byte 1 | bytes 2 | ... | byte N
  *              1 : Bytes are send msb (most significant bit) first
  *
+ *              C : Support for more than one I2C bus
+ *
  */
 
 #include <stdint.h>
