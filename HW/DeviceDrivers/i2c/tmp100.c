@@ -17,8 +17,7 @@ typedef struct
   int8_t isInitialised;
 } deviceTMP100_struct;
 
-deviceTMP100*
-tmp100_init()
+int8_t tmp100_init(deviceTMP100* device)
 {
   return 0;
 }

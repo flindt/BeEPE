@@ -5,12 +5,17 @@
  *      Author: flindt
  */
 
+
+
 #ifndef TMP100_H_
 #define TMP100_H_
+
+#include <stdint.h>
 
 struct deviceTMP100_struct;
 typedef struct deviceTMP100_struct *deviceTMP100;
 
-deviceTMP100* tmp100_init();
+int8_t tmp100_init(deviceTMP100* device);
+
 
 #endif /* TMP100_H_ */
