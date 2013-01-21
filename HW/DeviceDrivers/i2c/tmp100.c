@@ -17,7 +17,28 @@ typedef struct
   int8_t isInitialised;
 } deviceTMP100_struct;
 
-int8_t tmp100_init(deviceTMP100* device)
+deviceTMP100_struct deviceData[NO_SUPPORTED_TMP100_DEVICES+1];
+deviceTMP100_struct* deviceHandles[NO_SUPPORTED_TMP100_DEVICES] =
+  { 0 };
+
+TMP100_errors
+tmp100_init(deviceTMP100* device)
 {
-  return 0;
+  // a zero pointer will initialize a new structure if there is more room
+  if (*device != 0)
+    {
+      if ( deviceHandles[0] != 0) {
+          // Device already initialized
+         // return DEV_TOO_MANY_DEVICES;
+      }
+    }
+  else
+    {
+      deviceHandles[0] = &deviceData[0];
+      deviceHandles[0]->isInitialised = 1; // just to have some data while testing
+
+      *device = (deviceTMP100)deviceHandles[0];
+    }
+
+  return DEV_OK;
 }
