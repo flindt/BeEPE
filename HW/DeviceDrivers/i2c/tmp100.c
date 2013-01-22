@@ -16,11 +16,24 @@
 
 typedef struct
 {
-  int8_t isInitialised;
+  HWBUS bus;
+  int8_t address;
+
 } deviceTMP100_struct;
 
 deviceTMP100_struct deviceData[NO_SUPPORTED_TMP100_DEVICES + 1];
 deviceTMP100_struct *deviceHandles[NO_SUPPORTED_TMP100_DEVICES] = { 0 };
+
+void
+initDeviceStructure(int8_t loopCounter,
+    HWBUS hwBus, int8_t deviceAddress,
+    deviceTMP100* device)
+{
+  deviceHandles[loopCounter] = &deviceData[loopCounter];
+  *device = (deviceTMP100) deviceHandles[0];
+  deviceData[loopCounter].bus = hwBus;
+  deviceData[loopCounter].address = deviceAddress;
+}
 
 TMP100_errors
 tmp100_init(deviceTMP100* device, HWBUS hwBus, int8_t deviceAddress)
@@ -34,14 +47,15 @@ tmp100_init(deviceTMP100* device, HWBUS hwBus, int8_t deviceAddress)
     {
       if (  (size_t)(deviceHandles[loopCounter]) ==  0)      // Free device handle
         {
-          deviceHandles[0] = &deviceData[0];
-          *device = (deviceTMP100) deviceHandles[0];
-
+          initDeviceStructure(loopCounter, hwBus, deviceAddress,
+         device);
           return DEV_OK;
         }
        else if  (*device == (deviceTMP100) deviceHandles[loopCounter] )
         {
           // TODO : run initialization again
+           initDeviceStructure(loopCounter, hwBus, deviceAddress,
+                    device);
           return DEV_OK; // This handle is in use
         }
     }
@@ -52,7 +66,18 @@ tmp100_init(deviceTMP100* device, HWBUS hwBus, int8_t deviceAddress)
 
 int16_t tmp100_read_temp(deviceTMP100* device)
 {
+  deviceTMP100_struct *thisDevice;
+  thisDevice = (deviceTMP100_struct*) *device;
+  int8_t dataBytes[2];
+  int8_t error=0;
 
+  error = I2C_read( thisDevice->bus, thisDevice->address, 0, 2, dataBytes);
+
+  if (error==0)
+    {
+      // read ok - return data
+      return dataBytes[0]<<8 | dataBytes[1];
+    }
 
   return 0;
 }

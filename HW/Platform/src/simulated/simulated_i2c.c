@@ -32,6 +32,7 @@ enum AttatchedSlaves
 };
 enum Registers
 {
+  TEMP = 0x00,
   TLOW = 0x02
 };
 int8_t Tlow[2] =
@@ -66,7 +67,8 @@ sim_I2C_bus_open(int8_t busNumber)
 }
 
 int8_t
-sim_I2C_send( HWBUS hwBus, int8_t slaveAddress, int8_t slaveRegister, int8_t noBytesToSend, int8_t *dataBytes)
+sim_I2C_send(HWBUS hwBus, int8_t slaveAddress, int8_t slaveRegister,
+    int8_t noBytesToSend, int8_t *dataBytes)
 {
 
   switch (slaveAddress)
@@ -89,18 +91,25 @@ sim_I2C_send( HWBUS hwBus, int8_t slaveAddress, int8_t slaveRegister, int8_t noB
 }
 
 int8_t
-sim_I2C_read( HWBUS hwBus, int8_t slaveAddress, int8_t slaveRegister, int8_t noBytesToRead,
-    int8_t *dataBytes)
+sim_I2C_read(HWBUS hwBus, int8_t slaveAddress, int8_t slaveRegister,
+    int8_t noBytesToRead, int8_t *dataBytes)
 {
   switch (slaveAddress)
     {
   case TEMP_A:
     switch (slaveRegister)
       {
-    case TLOW:
-      dataBytes[0] = Tlow[0];
-      dataBytes[1] = Tlow[1];
+    case TEMP:
+      dataBytes[0] = 0xff;
+      dataBytes[1] = 0;
       break;
+    case TLOW:
+          dataBytes[0] = Tlow[0];
+          dataBytes[1] = Tlow[1];
+          break;
+    default:
+      dataBytes[0] = 0;
+      dataBytes[1] = 0;
       }
     return I2C_OK;
   case TEMP_B:

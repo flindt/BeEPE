@@ -51,7 +51,7 @@ test_tmp100_inittemp()
 void
 test_tmp100_read_temp()
 {
-  int16_t temperature = 0;
+  uint16_t temperature = 0;
 
   HWBUS myBus = 0;
 
@@ -63,9 +63,9 @@ test_tmp100_read_temp()
   // no errors should happen for first device
   assert_int_equal( 0, errorCode);
 
-  //temperature = tmp100_read_temp(myTempDevice);
+  temperature = tmp100_read_temp(&myTempDevice);
 
-  assert_false( temperature == 0);
+  assert_int_equal( 0xff00, temperature );
 }
 
 void
@@ -75,7 +75,7 @@ test_tmp100(void)
   ;               // starts a fixture
 
   run_test(test_tmp100_inittemp);
-  //run_test(test_tmp100_read_temp);
+  run_test(test_tmp100_read_temp);
 
   test_fixture_end()
   ;                 // ends a fixture

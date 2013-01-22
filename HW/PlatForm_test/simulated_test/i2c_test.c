@@ -93,6 +93,7 @@ test_i2c_write_read()
 
 }
 
+
 void
 test_i2c(void)
 {
