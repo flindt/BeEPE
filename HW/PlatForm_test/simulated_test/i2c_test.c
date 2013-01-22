@@ -17,6 +17,19 @@ int8_t noBytesToSend = 1;
 int8_t dataBytes[1] =
   { 11 };
 
+
+void test_i2c_open_bus()
+{
+  // Req: Support more than 1 bus
+  //            The simulated platform only has 1 i2c bus
+
+  I2C_Bus* myBus = 0;
+
+  myBus = I2C_Bus_Open( 0 );   // Open the first attached bus
+  assert_false( myBus == 0);
+}
+
+
 void
 test_i2c_send_command()
 {
@@ -74,6 +87,9 @@ test_i2c(void)
 {
   test_fixture_start()
   ;               // starts a fixture
+
+  run_tests(test_i2c_open_bus);
+
   run_test(test_i2c_send_command);
   run_test(test_i2c_write_read);
 

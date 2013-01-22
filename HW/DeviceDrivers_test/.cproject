@@ -29,6 +29,7 @@
 								<option id="gnu.c.compiler.exe.debug.option.debugging.level.1569680101" name="Debug Level" superClass="gnu.c.compiler.exe.debug.option.debugging.level" value="gnu.c.debugging.level.max" valueType="enumerated"/>
 								<option id="gnu.c.compiler.option.include.paths.1486275623" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DeviceDrivers}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DeviceDrivers/inc}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DeviceDrivers_test/seatest}&quot;"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.1407104942" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>

@@ -15,9 +15,13 @@
 struct deviceTMP100_struct;
 typedef struct deviceTMP100_struct *deviceTMP100;
 
+// How many similar devices to support at once
 #define NO_SUPPORTED_TMP100_DEVICES 1
-typedef enum { DEV_OK, DEV_TOO_MANY_DEVICES } TMP100_errors;
 
+enum tmp100_error_enum { DEV_OK, DEV_TOO_MANY_DEVICES };
+typedef enum tmp100_error_enum TMP100_errors;
+
+// deviceTMP100* tmp100_open(int8_t deviceAddress, bus connection);
 TMP100_errors tmp100_init(deviceTMP100* device);
 
 
