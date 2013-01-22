@@ -66,8 +66,7 @@ sim_I2C_bus_open(int8_t busNumber)
 }
 
 int8_t
-sim_I2C_send(int8_t slaveAddress, int8_t slaveRegister, int8_t noBytesToSend,
-    int8_t *dataBytes)
+sim_I2C_send( HWBUS hwBus, int8_t slaveAddress, int8_t slaveRegister, int8_t noBytesToSend, int8_t *dataBytes)
 {
 
   switch (slaveAddress)
@@ -90,7 +89,7 @@ sim_I2C_send(int8_t slaveAddress, int8_t slaveRegister, int8_t noBytesToSend,
 }
 
 int8_t
-sim_I2C_read(int8_t slaveAddress, int8_t slaveRegister, int8_t noBytesToRead,
+sim_I2C_read( HWBUS hwBus, int8_t slaveAddress, int8_t slaveRegister, int8_t noBytesToRead,
     int8_t *dataBytes)
 {
   switch (slaveAddress)

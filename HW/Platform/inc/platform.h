@@ -33,8 +33,8 @@ HWBUS I2C_bus_open(int8_t busNumber);
 
 // I2C functions -------------------------------------------------------------------------------------
 int8_t I2C_init();
-int8_t I2C_send( int8_t slaveAddress, int8_t slaveRegister, int8_t noBytesToSend, int8_t *dataBytes);
-int8_t I2C_read( int8_t slaveAddress, int8_t slaveRegister, int8_t noBytesToRead, int8_t *dataBytes);
+int8_t I2C_send( HWBUS hwBus, int8_t slaveAddress, int8_t slaveRegister, int8_t noBytesToSend, int8_t *dataBytes);
+int8_t I2C_read( HWBUS hwBus, int8_t slaveAddress, int8_t slaveRegister, int8_t noBytesToRead, int8_t *dataBytes);
 
 
 #endif /* PLATFORM_H_ */

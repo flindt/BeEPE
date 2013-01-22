@@ -10,25 +10,32 @@
 #include "platform.h"
 //#include "simulated.h"
 
-HWBUS I2C_bus_open(int8_t busNumber){
+HWBUS
+I2C_bus_open(int8_t busNumber)
+{
   return sim_I2C_bus_open(busNumber);
 }
 
-int8_t I2C_init()
+//int8_t I2C_init()
+//{
+//  return I2C_ERROR;
+//}
+
+int8_t
+I2C_send(HWBUS hwBus, int8_t slaveAddress, int8_t slaveRegister,
+    int8_t noBytesToSend, int8_t *dataBytes)
 {
-  return I2C_ERROR;
+
+  return sim_I2C_send(hwBus, slaveAddress, slaveRegister, noBytesToSend,
+      dataBytes);
+
 }
 
-
-int8_t I2C_send(int8_t slaveAddress, int8_t slaveRegister, int8_t noBytesToSend, int8_t *dataBytes)
+int8_t
+I2C_read(HWBUS hwBus, int8_t slaveAddress, int8_t slaveRegister,
+    int8_t noBytesToRead, int8_t *dataBytes)
 {
+  return sim_I2C_read(hwBus, slaveAddress, slaveRegister, noBytesToRead,
+      dataBytes);
 
-  return sim_I2C_send(slaveAddress, slaveRegister, noBytesToSend, dataBytes);
-
-}
-
-
-int8_t I2C_read( int8_t slaveAddress, int8_t slaveRegister, int8_t noBytesToRead, int8_t *dataBytes)
-{
-  return sim_I2C_read();
 }

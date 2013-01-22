@@ -29,27 +29,36 @@ test_i2c_open_bus()
   assert_false( myBus == 0);
 
   myBus = I2C_bus_open(1);   // Open another bus
-  assert_true( myBus == 0); // Error - there is not other bus
+  assert_true( myBus == 0);
+  // Error - there is not other bus
 }
 
 void
 test_i2c_send_command()
 {
+  HWBUS myBus = 0;
+  myBus = I2C_bus_open(0);   // Open the first attached bus
+  assert_false( myBus == 0);
+
   // Send to non-attached slave address
   // TODO: return values shold be taken from "platform.h"
   assert_int_equal( 1,
-      I2C_send( address_not_ok, slaveRegister, noBytesToSend, dataBytes));
+      I2C_send( myBus, address_not_ok, slaveRegister, noBytesToSend, dataBytes));
 
   // send to two attached slaves (at least in simulator)
   assert_int_equal( 0,
-      I2C_send( address_ok_a, slaveRegister, noBytesToSend, dataBytes));
+      I2C_send( myBus, address_ok_a, slaveRegister, noBytesToSend, dataBytes));
   assert_int_equal( 0,
-      I2C_send( address_ok_b, slaveRegister, noBytesToSend, dataBytes));
+      I2C_send( myBus, address_ok_b, slaveRegister, noBytesToSend, dataBytes));
 }
 
 void
 test_i2c_write_read()
 {
+  HWBUS myBus = 0;
+  myBus = I2C_bus_open(0);   // Open the first attached bus
+  assert_false( myBus == 0);
+
   int8_t tlowBytes[2] =
     { 22, 33 };
   int8_t response[4] =
@@ -57,9 +66,9 @@ test_i2c_write_read()
   int8_t noBytesTlow = 2;
   // write to slave register - then read to confirm
   assert_int_equal( 0,
-      I2C_send( address_ok_a, slaveRegister, noBytesTlow, tlowBytes));
+      I2C_send( myBus, address_ok_a, slaveRegister, noBytesTlow, tlowBytes));
   assert_int_equal( 0,
-      I2C_read( address_ok_a, slaveRegister, noBytesTlow, &response[1]));
+      I2C_read( myBus, address_ok_a, slaveRegister, noBytesTlow, &response[1]));
 
   // check buffer
   assert_int_equal( 1, response[0]);
@@ -72,9 +81,9 @@ test_i2c_write_read()
 
   // write to slave register - then read to confirm
   assert_int_equal( 0,
-      I2C_send( address_ok_a, slaveRegister, noBytesTlow, tlowBytes));
+      I2C_send( myBus, address_ok_a, slaveRegister, noBytesTlow, tlowBytes));
   assert_int_equal( 0,
-      I2C_read( address_ok_a, slaveRegister, noBytesTlow, &response[1]));
+      I2C_read( myBus, address_ok_a, slaveRegister, noBytesTlow, &response[1]));
 
   // check buffer
   assert_int_equal( 1, response[0]);
