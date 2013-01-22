@@ -1,0 +1,12 @@
+eclipse.preferences.version=1
+environment/project/dk.xpg.msp430eclipse.configuration.app.debug.1135801338/MSP430AR/delimiter=\:
+environment/project/dk.xpg.msp430eclipse.configuration.app.debug.1135801338/MSP430AR/operation=append
+environment/project/dk.xpg.msp430eclipse.configuration.app.debug.1135801338/MSP430AR/value=msp430-ar
+environment/project/dk.xpg.msp430eclipse.configuration.app.debug.1135801338/MSP430GCC/delimiter=\:
+environment/project/dk.xpg.msp430eclipse.configuration.app.debug.1135801338/MSP430GCC/operation=append
+environment/project/dk.xpg.msp430eclipse.configuration.app.debug.1135801338/MSP430GCC/value=msp430-gcc
+environment/project/dk.xpg.msp430eclipse.configuration.app.debug.1135801338/MSP430MAKE/delimiter=\:
+environment/project/dk.xpg.msp430eclipse.configuration.app.debug.1135801338/MSP430MAKE/operation=append
+environment/project/dk.xpg.msp430eclipse.configuration.app.debug.1135801338/MSP430MAKE/value=make
+environment/project/dk.xpg.msp430eclipse.configuration.app.debug.1135801338/append=true
+environment/project/dk.xpg.msp430eclipse.configuration.app.debug.1135801338/appendContributed=true
