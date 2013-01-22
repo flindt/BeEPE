@@ -27,16 +27,24 @@ deviceTMP100_struct *deviceHandles[NO_SUPPORTED_TMP100_DEVICES] = { 0 };
 void
 initDeviceStructure(int8_t loopCounter,
     HWBUS hwBus, int8_t deviceAddress,
-    deviceTMP100* device)
+    deviceTMP100 device)
 {
   deviceHandles[loopCounter] = &deviceData[loopCounter];
-  *device = (deviceTMP100) deviceHandles[0];
+  device = (deviceTMP100) deviceHandles[0];
   deviceData[loopCounter].bus = hwBus;
   deviceData[loopCounter].address = deviceAddress;
 }
 
+deviceTMP100 tmp100_open(int8_t deviceNumber){
+  if ( deviceNumber < NO_SUPPORTED_TMP100_DEVICES)
+    {
+      return (deviceTMP100) &deviceData[deviceNumber];
+    }
+  return 0;
+}
+
 TMP100_errors
-tmp100_init(deviceTMP100* device, HWBUS hwBus, int8_t deviceAddress)
+tmp100_init(deviceTMP100 device, HWBUS hwBus, int8_t deviceAddress)
 {
   // a zero pointer will initialize a new structure if there is more room
   // a handle may be initialized twice
@@ -51,7 +59,7 @@ tmp100_init(deviceTMP100* device, HWBUS hwBus, int8_t deviceAddress)
          device);
           return DEV_OK;
         }
-       else if  (*device == (deviceTMP100) deviceHandles[loopCounter] )
+       else if  (device == (deviceTMP100) deviceHandles[loopCounter] )
         {
           // TODO : run initialization again
            initDeviceStructure(loopCounter, hwBus, deviceAddress,
@@ -64,10 +72,10 @@ tmp100_init(deviceTMP100* device, HWBUS hwBus, int8_t deviceAddress)
   return DEV_TOO_MANY_DEVICES;
 }
 
-int16_t tmp100_read_temp(deviceTMP100* device)
+int16_t tmp100_read_temp(deviceTMP100 device)
 {
   deviceTMP100_struct *thisDevice;
-  thisDevice = (deviceTMP100_struct*) *device;
+  thisDevice = (deviceTMP100_struct*) device;
   int8_t dataBytes[2];
   int8_t error=0;
 

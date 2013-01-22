@@ -23,7 +23,10 @@ test_tmp100_inittemp()
   myBus = I2C_bus_open(0);   // Open the first attached bus
   assert_false( myBus == 0);
 
-  int8_t errorCode = tmp100_init(&myTempDevice, myBus, 0x4F);
+  myTempDevice = tmp100_open(0);
+  assert_false( myTempDevice==0);
+
+  int8_t errorCode = tmp100_init(myTempDevice, myBus, 0x4F);
 
   // no errors should happen for first device
   assert_int_equal( 0, errorCode);
@@ -32,18 +35,18 @@ test_tmp100_inittemp()
   assert_false( myTempDevice == 0);
 
   // device can be initialized again, with no error
-  errorCode = tmp100_init(&myTempDevice, myBus, 0x4F);
+  errorCode = tmp100_init(myTempDevice, myBus, 0x4F);
   assert_int_equal( 0, errorCode);
 
   // next device gives an error since only 1 is supported
 
   // Try to use device number two
-  errorCode = tmp100_init(&myTempDevice2, myBus, 0x4F);
+  errorCode = tmp100_init(myTempDevice2, myBus, 0x4F);
   assert_int_equal( DEV_TOO_MANY_DEVICES, errorCode);
   assert_true( myTempDevice2 == 0);
 
   // Try to use device number two
-  errorCode = tmp100_init(&myTempDevice3, myBus, 0x4F);
+  errorCode = tmp100_init(myTempDevice3, myBus, 0x4F);
   assert_int_equal( DEV_TOO_MANY_DEVICES, errorCode);
   assert_true( myTempDevice2 == 0);
 }
@@ -58,14 +61,17 @@ test_tmp100_read_temp()
   myBus = I2C_bus_open(0);   // Open the first attached bus
   assert_false( myBus == 0);
 
-  int8_t errorCode = tmp100_init(&myTempDevice, myBus, 0x4F);
+  myTempDevice = tmp100_open(0);
+  assert_false( myTempDevice==0);
+
+  int8_t errorCode = tmp100_init(myTempDevice, myBus, 0x4F);
 
   // no errors should happen for first device
   assert_int_equal( 0, errorCode);
 
-  temperature = tmp100_read_temp(&myTempDevice);
+  temperature = tmp100_read_temp(myTempDevice);
 
-  assert_int_equal( 0xff00, temperature );
+  assert_int_equal( 0xff00, temperature);
 }
 
 void
