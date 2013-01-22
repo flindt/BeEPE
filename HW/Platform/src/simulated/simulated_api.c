@@ -10,6 +10,10 @@
 #include "platform.h"
 //#include "simulated.h"
 
+HWBUS I2C_bus_open(int8_t busNumber){
+  return sim_I2C_bus_open(busNumber);
+}
+
 int8_t I2C_init()
 {
   return I2C_ERROR;
