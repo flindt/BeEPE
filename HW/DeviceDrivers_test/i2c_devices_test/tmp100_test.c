@@ -8,7 +8,7 @@
 #include "seatest.h"
 
 #include "tmp100.h"
-#include "inc/platform.h"
+#include <platform.h>
 
 deviceTMP100 myTempDevice = 0;
 
@@ -18,7 +18,7 @@ test_tmp100_inittemp()
   deviceTMP100 myTempDevice2 = 0;
   deviceTMP100 myTempDevice3 = 0;
 
-  HWBUS myBus = 0;
+  I2C_HWBUS myBus = 0;
 
   myBus = I2C_bus_open(0);   // Open the first attached bus
   assert_false( myBus == 0);
@@ -56,7 +56,7 @@ test_tmp100_read_temp()
 {
   uint16_t temperature = 0;
 
-  HWBUS myBus = 0;
+  I2C_HWBUS myBus = 0;
 
   myBus = I2C_bus_open(0);   // Open the first attached bus
   assert_false( myBus == 0);

@@ -34,6 +34,7 @@
 								<option id="gnu.c.compiler.lib.debug.option.debugging.level.1408624522" name="Debug Level" superClass="gnu.c.compiler.lib.debug.option.debugging.level" value="gnu.c.debugging.level.max" valueType="enumerated"/>
 								<option id="gnu.c.compiler.option.include.paths.1196243355" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Platform}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Platform/inc}&quot;"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.585895693" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
 							</tool>

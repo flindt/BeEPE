@@ -10,7 +10,7 @@
 #include "platform.h"
 //#include "simulated.h"
 
-HWBUS
+I2C_HWBUS
 I2C_bus_open(int8_t busNumber)
 {
   return sim_I2C_bus_open(busNumber);
@@ -22,7 +22,7 @@ I2C_bus_open(int8_t busNumber)
 //}
 
 int8_t
-I2C_send(HWBUS hwBus, int8_t slaveAddress, int8_t slaveRegister,
+I2C_send(I2C_HWBUS hwBus, int8_t slaveAddress, int8_t slaveRegister,
     int8_t noBytesToSend, int8_t *dataBytes)
 {
 
@@ -32,7 +32,7 @@ I2C_send(HWBUS hwBus, int8_t slaveAddress, int8_t slaveRegister,
 }
 
 int8_t
-I2C_read(HWBUS hwBus, int8_t slaveAddress, int8_t slaveRegister,
+I2C_read(I2C_HWBUS hwBus, int8_t slaveAddress, int8_t slaveRegister,
     int8_t noBytesToRead, int8_t *dataBytes)
 {
   return sim_I2C_read(hwBus, slaveAddress, slaveRegister, noBytesToRead,

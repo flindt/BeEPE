@@ -16,7 +16,7 @@
 
 typedef struct
 {
-  HWBUS bus;
+  I2C_HWBUS bus;
   int8_t address;
 
 } deviceTMP100_struct;
@@ -26,7 +26,7 @@ deviceTMP100_struct *deviceHandles[NO_SUPPORTED_TMP100_DEVICES] = { 0 };
 
 void
 initDeviceStructure(int8_t loopCounter,
-    HWBUS hwBus, int8_t deviceAddress,
+    I2C_HWBUS hwBus, int8_t deviceAddress,
     deviceTMP100 device)
 {
   deviceHandles[loopCounter] = &deviceData[loopCounter];
@@ -44,7 +44,7 @@ deviceTMP100 tmp100_open(int8_t deviceNumber){
 }
 
 TMP100_errors
-tmp100_init(deviceTMP100 device, HWBUS hwBus, int8_t deviceAddress)
+tmp100_init(deviceTMP100 device, I2C_HWBUS hwBus, int8_t deviceAddress)
 {
   // a zero pointer will initialize a new structure if there is more room
   // a handle may be initialized twice

@@ -26,15 +26,15 @@ enum platformErrorCodes { I2C_OK, I2C_ERROR };
 
 // Define a HWBUS pointer - this is the reference to the bus to be used
 struct bus_struct;
-typedef struct bus_struct *HWBUS;
+typedef struct bus_struct *I2C_HWBUS;
 
 // HWBUS functions -----------------------------------------------------------------------------------
-HWBUS I2C_bus_open(int8_t busNumber);
+I2C_HWBUS I2C_bus_open(int8_t busNumber);
 
 // I2C functions -------------------------------------------------------------------------------------
 int8_t I2C_init();
-int8_t I2C_send( HWBUS hwBus, int8_t slaveAddress, int8_t slaveRegister, int8_t noBytesToSend, int8_t *dataBytes);
-int8_t I2C_read( HWBUS hwBus, int8_t slaveAddress, int8_t slaveRegister, int8_t noBytesToRead, int8_t *dataBytes);
+int8_t I2C_send( I2C_HWBUS hwBus, int8_t slaveAddress, int8_t slaveRegister, int8_t noBytesToSend, int8_t *dataBytes);
+int8_t I2C_read( I2C_HWBUS hwBus, int8_t slaveAddress, int8_t slaveRegister, int8_t noBytesToRead, int8_t *dataBytes);
 
 
 #endif /* PLATFORM_H_ */

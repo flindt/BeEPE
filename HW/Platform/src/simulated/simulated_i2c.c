@@ -54,20 +54,20 @@ sim_I2C_bus_init(int8_t busNumber)
   return 0;
 }
 
-HWBUS
+I2C_HWBUS
 sim_I2C_bus_open(int8_t busNumber)
 {
   if (busNumber < numberOfBusses)
     {
 
-      return (HWBUS) &bussesAttached[busNumber];
+      return (I2C_HWBUS) &bussesAttached[busNumber];
 
     }
   return 0;
 }
 
 int8_t
-sim_I2C_send(HWBUS hwBus, int8_t slaveAddress, int8_t slaveRegister,
+sim_I2C_send(I2C_HWBUS hwBus, int8_t slaveAddress, int8_t slaveRegister,
     int8_t noBytesToSend, int8_t *dataBytes)
 {
 
@@ -91,7 +91,7 @@ sim_I2C_send(HWBUS hwBus, int8_t slaveAddress, int8_t slaveRegister,
 }
 
 int8_t
-sim_I2C_read(HWBUS hwBus, int8_t slaveAddress, int8_t slaveRegister,
+sim_I2C_read(I2C_HWBUS hwBus, int8_t slaveAddress, int8_t slaveRegister,
     int8_t noBytesToRead, int8_t *dataBytes)
 {
   switch (slaveAddress)
@@ -110,6 +110,7 @@ sim_I2C_read(HWBUS hwBus, int8_t slaveAddress, int8_t slaveRegister,
     default:
       dataBytes[0] = 0;
       dataBytes[1] = 0;
+      break;
       }
     return I2C_OK;
   case TEMP_B:

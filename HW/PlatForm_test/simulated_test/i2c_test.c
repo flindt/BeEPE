@@ -23,7 +23,7 @@ test_i2c_open_bus()
   // Req: Support more than 1 bus
   //            The simulated platform only has 1 i2c bus
 
-  HWBUS myBus = 0;
+  I2C_HWBUS myBus = 0;
 
   myBus = I2C_bus_open(0);   // Open the first attached bus
   assert_false( myBus == 0);
@@ -36,7 +36,7 @@ test_i2c_open_bus()
 void
 test_i2c_send_command()
 {
-  HWBUS myBus = 0;
+  I2C_HWBUS myBus = 0;
   myBus = I2C_bus_open(0);   // Open the first attached bus
   assert_false( myBus == 0);
 
@@ -55,7 +55,7 @@ test_i2c_send_command()
 void
 test_i2c_write_read()
 {
-  HWBUS myBus = 0;
+  I2C_HWBUS myBus = 0;
   myBus = I2C_bus_open(0);   // Open the first attached bus
   assert_false( myBus == 0);
 
