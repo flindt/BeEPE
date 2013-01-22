@@ -11,6 +11,7 @@
 #define TMP100_H_
 
 #include <stdint.h>
+#include "inc/platform.h"
 
 struct deviceTMP100_struct;
 typedef struct deviceTMP100_struct *deviceTMP100;
@@ -22,7 +23,7 @@ enum tmp100_error_enum { DEV_OK, DEV_TOO_MANY_DEVICES };
 typedef enum tmp100_error_enum TMP100_errors;
 
 // deviceTMP100* tmp100_open(int8_t deviceAddress, bus connection);
-TMP100_errors tmp100_init(deviceTMP100* device);
+TMP100_errors tmp100_init(deviceTMP100* device, HWBUS hwBus, int8_t deviceAddress);
 
 
 #endif /* TMP100_H_ */

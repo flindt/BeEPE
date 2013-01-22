@@ -4,6 +4,7 @@
 	<comment></comment>
 	<projects>
 		<project>DeviceDrivers</project>
+		<project>Platform</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

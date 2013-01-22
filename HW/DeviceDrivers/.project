@@ -3,6 +3,7 @@
 	<name>DeviceDrivers</name>
 	<comment></comment>
 	<projects>
+		<project>Platform</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

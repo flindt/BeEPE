@@ -13,6 +13,7 @@
 #include <stdint.h>
 #include "../inc/tmp100.h"
 
+
 typedef struct
 {
   int8_t isInitialised;
@@ -22,7 +23,7 @@ deviceTMP100_struct deviceData[NO_SUPPORTED_TMP100_DEVICES + 1];
 deviceTMP100_struct *deviceHandles[NO_SUPPORTED_TMP100_DEVICES] = { 0 };
 
 TMP100_errors
-tmp100_init(deviceTMP100* device)
+tmp100_init(deviceTMP100* device, HWBUS hwBus, int8_t deviceAddress)
 {
   // a zero pointer will initialize a new structure if there is more room
   // a handle may be initialized twice
@@ -47,4 +48,11 @@ tmp100_init(deviceTMP100* device)
 
   // If the loop exits, there are no free handles
   return DEV_TOO_MANY_DEVICES;
+}
+
+int16_t tmp100_read_temp(deviceTMP100* device)
+{
+
+
+  return 0;
 }
